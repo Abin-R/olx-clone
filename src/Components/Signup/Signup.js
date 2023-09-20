@@ -31,7 +31,9 @@ export default function Signup() {
 
   return (
     <div>
+      <p>hiii</p>
       <div className="signupParentDiv">
+        
         <img width="200px" height="200px" src={Logo}></img>
         <form onSubmit={handleSubmit}>
           <label htmlFor="fname">Username</label>
@@ -85,7 +87,7 @@ export default function Signup() {
           <br />
           <button>Signup</button>
         </form>
-        <a>Login</a>
+        <a onClick={()=>history.push('/login')}>Login</a>
       </div>
     </div>
   );

@@ -25,6 +25,7 @@ function Banner() {
           <img
             src="../../../Images/banner copy.png"
             alt=""
+            // style={{width:'85rem'}}
           />
         </div>
       </div>

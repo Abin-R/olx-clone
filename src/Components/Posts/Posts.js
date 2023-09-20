@@ -6,6 +6,7 @@ import { FireBaseContext } from '../../store/Context';
 import { PostContext } from '../../store/PostContext';
 import {useHistory} from 'react-router-dom'
 
+
 function Posts() {
 
   const{firebase} = useContext(FireBaseContext)
@@ -21,7 +22,7 @@ function Posts() {
             id:product.id
           }
       })
-      console.log(allpost)
+     
       setProducts(allpost)
     })
   }, [])
@@ -29,53 +30,52 @@ function Posts() {
     <div className="postParentDiv">
       <div className="moreView">
         <div className="heading">
-          <span>Quick Menu</span>
-          <span>View more</span>
+          <h2>Quick Menu</h2>
+          <button>View more</button>
         </div>
         <div className="cards">
-        { products.map(product=>{
-
-          return <div
-            className="card"
-            onClick={()=>{
-                setPostDetails(product)
-                history.push('/view')
-            }}
-          >
-            <div className="favorite">
-              <Heart></Heart>
+          {products.map((product) => (
+            <div
+              className="card"
+              key={product.id} // Make sure each item has a unique key
+              onClick={() => {
+                history.push('/view');
+              }}
+            >
+              <div className="favorite">
+                <Heart />
+              </div>
+              <div className="image">
+                <img src={product.url} alt={product.name} />
+              </div>
+              <div className="content">
+                <p className="rate">&#x20B9; {product.price}</p>
+                <span className="category">{product.category}</span>
+                <h3 className="name">{product.name}</h3>
+              </div>
+              <div className="date">
+                <span>{product.createdAt}</span>
+              </div>
             </div>
-            <div className="image">
-              <img src={product.url} alt="" />
-            </div>
-            <div className="content">
-              <p className="rate">&#x20B9; {product.price}</p>
-              <span className="kilometer">{product.category}</span>
-              <p className="name"> {product.name}</p>
-            </div>
-            <div className="date">
-              <span>{product.createdAt}</span>
-            </div>
-          </div>
-        })} 
+          ))}
         </div>
       </div>
       <div className="recommendations">
         <div className="heading">
-          <span>Fresh recommendations</span>
+          <h2>Fresh Recommendations</h2>
         </div>
         <div className="cards">
           <div className="card">
             <div className="favorite">
-              <Heart></Heart>
+              <Heart />
             </div>
             <div className="image">
-              <img src="../../../Images/R15V3.jpg" alt="" />
+              <img src="../../../Images/R15V3.jpg" alt="YAMAHA R15V3" />
             </div>
             <div className="content">
-              <p className="rate">&#x20B9; 250000</p>
-              <span className="kilometer">Two Wheeler</span>
-              <p className="name"> YAMAHA R15V3</p>
+              <p className="rate">&#x20B9; 250,000</p>
+              <span className="category">Two Wheeler</span>
+              <h3 className="name">YAMAHA R15V3</h3>
             </div>
             <div className="date">
               <span>10/5/2021</span>

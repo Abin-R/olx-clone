@@ -5,8 +5,9 @@ import Logo from '../../olx-logo.png';
 import './Login.css';
 import {useHistory} from 'react-router-dom'
 
-function Login() {
 
+function Login() {
+  
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -18,7 +19,7 @@ function Login() {
       firebase.auth().signInWithEmailAndPassword(email,password).then(()=>{
         history.push('/')
       }).catch((error)=>{
-        alert(error.message)
+        console.log(error.message)
       })
   }
 
@@ -52,9 +53,9 @@ function Login() {
           />
           <br />
           <br />
-          <button>Login</button>
+          <button >Login</button>
         </form>
-        <a>Signup</a>
+        <a onClick={() => history.push('/signup')}>Signup</a>
       </div>
     </div>
   );

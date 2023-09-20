@@ -7,15 +7,18 @@ import Arrow from '../../assets/Arrow';
 import SellButton from '../../assets/SellButton';
 import SellButtonPlus from '../../assets/SellButtonPlus';
 import { AuthContext, FireBaseContext } from '../../store/Context';
-function Header() {
+
+
+function Header(title) {
   const history = useHistory()
   const {user} = useContext(AuthContext);
   const {firebase} = useContext(FireBaseContext)
-  console.log('User:', user);
+
+
   return (
     <div className="headerParentDiv">
       <div className="headerChildDiv">
-        <div className="brandName">
+        <div className="brandName" onClick={()=>history.push('/')}>
           <OlxLogo></OlxLogo>
         </div>
         <div className="placeSearch">
@@ -39,17 +42,31 @@ function Header() {
           <Arrow></Arrow>
         </div>
         <div className="loginPage">
-          <span>{user ? <span>{user.displayName}</span>: <span onClick={()=>{
-            history.push('/login')
-          }}>Login</span>}</span>
+          <span>
+            {user ? (
+              <span>{user.displayName}</span>
+            ) : title === 'Login' ? (
+              <span onClick={() => {
+                history.push('/signup');
+              }}>Signup</span>
+            ) : (
+              
+              <span onClick={() => {
+                history.push('/login');
+              }}>Login</span>
+            )}
+          </span>
           <hr />
         </div>
+
           { user &&  <span onClick={()=>{
             firebase.auth().signOut();
             history.push('/login')
           }} >Logout</span>}
 
-        <div className="sellMenu">
+        <div className="sellMenu" onClick={()=>{
+          history.push(user ? '/create' : '/login')
+        }}>
           <SellButton></SellButton>
           <div className="sellMenuContent">
             <SellButtonPlus></SellButtonPlus>

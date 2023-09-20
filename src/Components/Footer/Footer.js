@@ -4,7 +4,7 @@ import './Footer.css';
 
 function Footer() {
   return (
-    <div className="footerParentDiv">
+    <div className="footerParentDiv" >
       <div className="content">
         <div>
           <div className="heading">
